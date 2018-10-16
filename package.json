@@ -6,9 +6,12 @@
   "scripts": {
     "client-install": "npm install --prefix client",
     "start": "node server.js",
-    "server": "nodemon server.js",
-    "client": "npm start --prefix client",
-    "1": "concurrently \"npm run server\" \"npm run client\""
+    "1": "nodemon server.js",
+    "2": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "nodemonConfig": {
+    "ignore": ["client\\*"]
   },
   "keywords": [],
   "author": "Hải Nguyễn Đức",
