@@ -4,7 +4,7 @@ const isEmpty = require("./is-empty");
 module.exports = function validateProfileInput(data) {
   let errors = {};
 
-  /* First, Because some fields may be not provided,
+  /* First, Because some fields may not be provided,
    * We should set all fields to `empty string`.
    * So Validator's methods need these.
   */
@@ -12,7 +12,7 @@ module.exports = function validateProfileInput(data) {
   data.status = !isEmpty(data.status) ? data.status : "";
   data.skills = !isEmpty(data.skills) ? data.skills : "";
 
-  /* HANDLE */
+  /* HANDLE Required */
   if (Validator.isEmpty(data.handle)) {
     errors.handle = "Profile handle is required";
   }
@@ -26,24 +26,24 @@ module.exports = function validateProfileInput(data) {
     errors.handle = "Handle needs to between 2 and 40 character";
   }
 
-  /* STATUS */
+  /* STATUS Required */
   if (Validator.isEmpty(data.status)) {
     errors.status = "Status field is required";
   }
 
-  /* SKILLS */
+  /* SKILLS Required */
   if (Validator.isEmpty(data.skills)) {
     errors.skills = "Skills field is required";
   }
 
-  /* WEBSITE Not Required */
+  /* WEBSITE Optional */
   if (!isEmpty(data.website)) {
     if (!Validator.isURL(data.website)) {
       errors.website = "Not a valid URL";
     }
   }
 
-  /* SOCIALS Not Required */
+  /* SOCIALS Optional */
   if (!isEmpty(data.youtube)) {
     if (!Validator.isURL(data.youtube)) {
       errors.youtube = "Not a valid URL";

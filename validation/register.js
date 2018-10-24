@@ -4,7 +4,7 @@ const isEmpty = require("./is-empty");
 module.exports = function validateRegisterInput(data) {
   let errors = {};
 
-  /* First, Because some fields may be not provided,
+  /* First, Because some fields may not be provided,
    * We should set all fields to `empty string`.
    * So Validator's methods need these.
   */
