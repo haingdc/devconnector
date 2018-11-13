@@ -24,6 +24,7 @@ class Profile extends Component {
   
   render() {
     const { profile, loading } = this.props.profile;
+    const { auth } = this.props;
     let profileContent;
     
     if (profile === undefined || loading) {
@@ -34,6 +35,13 @@ class Profile extends Component {
           <div className="row">
             <div className="col-md-6">
               <Link to="/profiles" className="btn btn-light mb-3 float-left" >Back to Profiles</Link>
+              {console.log(profile.user._id, auth.user.id)}
+              {profile.user._id === auth.user.id ? undefined : 
+                <button
+                  className="btn btn-primary mb-3 float-left" 
+                  role="button"
+                >Follow</button>
+              }
             </div>
             <div className="col-md-6"></div>
           </div>
@@ -63,7 +71,8 @@ Profile.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  profile: state.profile
+  profile: state.profile,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getProfileByHandle } )(Profile);

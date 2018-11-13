@@ -48,6 +48,14 @@ const ProfileSchema = new Schema({
     instagram: { type: String },
   },
   date: { type: Date, default: Date.now },
+  follow: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "users",
+      },
+    },
+  ],
 });
 
 module.exports = Profile = mongoose.model("profile", ProfileSchema);
